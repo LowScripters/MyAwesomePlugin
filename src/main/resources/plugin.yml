@@ -1,0 +1,4 @@
+name: VeryOriginalPlugin
+version: '${version}'
+main: org.hakerplugin.plugin.VeryOriginalPlugin
+api-version: '1.19'
