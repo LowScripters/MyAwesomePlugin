@@ -1,16 +1,18 @@
 package org.hakerplugin.plugin;
 
-import com.google.common.util.concurrent.Service;
-import org.bukkit.Bukkit;
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.hakerplugin.plugin.Commands.Commands;
+import java.util.logging.Logger;
+import co.aikar.commands.BukkitCommandManager;
 
 public final class VeryOriginalPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getServer().getPluginManager().registerEvents(new JumpListener(), this);
-
+        Logger log = getLogger();
+        log.info("Ihr Plugin läuft, willkommen!");
+        BukkitCommandManager manager = new BukkitCommandManager(this);
+        manager.registerCommand(new Commands());
     }
 
     @Override
