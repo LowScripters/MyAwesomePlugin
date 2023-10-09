@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-@CommandAlias("lieblingsessen")
+@CommandAlias("food")
 public class Commands extends BaseCommand {
     private final JavaPlugin plugin;
 
@@ -22,11 +22,11 @@ public class Commands extends BaseCommand {
             sender.sendMessage("Du erbärmliche Maschine!");
         } else {
             if (arg.length > 0){
-                plugin.getConfig().set("lieblingsessen", String.join(" ", arg));
+                plugin.getConfig().set("food", String.join(" ", arg));
                 plugin.saveConfig();
-                player.sendMessage("Das Lieblingsessen wurde in " + plugin.getConfig().get("lieblingsessen") + " geändert");
+                player.sendMessage("Das Lieblingsessen wurde in " + plugin.getConfig().get("food") + " geändert");
             } else {
-                player.sendMessage("Lieblingsessen: " + plugin.getConfig().get("lieblingsessen"));
+                player.sendMessage("Lieblingsessen: " + plugin.getConfig().get("food"));
             }
         }
     }
