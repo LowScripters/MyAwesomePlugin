@@ -12,7 +12,7 @@ public final class VeryOriginalPlugin extends JavaPlugin {
         Logger log = getLogger();
         log.info("Ihr Plugin läuft, willkommen!");
         BukkitCommandManager manager = new BukkitCommandManager(this);
-        manager.registerCommand(new Commands());
+        manager.registerCommand(new Commands(this));
     }
 
     @Override

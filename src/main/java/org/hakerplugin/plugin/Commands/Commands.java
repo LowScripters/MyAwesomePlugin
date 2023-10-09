@@ -2,19 +2,32 @@ package org.hakerplugin.plugin.Commands;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
-import co.aikar.commands.annotation.CommandPermission;
 import co.aikar.commands.annotation.Default;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-@CommandAlias("hallo")
+import org.bukkit.plugin.java.JavaPlugin;
+
+@CommandAlias("lieblingsessen")
 public class Commands extends BaseCommand {
+    private final JavaPlugin plugin;
+
+    public Commands(JavaPlugin plugin) {
+        this.plugin = plugin;
+    }
+
+
     @Default
-    @CommandPermission("minecraft.command.op")
-    public void HelCom(CommandSender sender) {
-        if (sender instanceof Player player) {
-            player.sendMessage("Guten Tag, Spieler " + player.getName() + "!");
+    public void FoodCom(CommandSender sender, String[] arg) {
+        if (!(sender instanceof Player player)) {
+            sender.sendMessage("Du erbärmliche Maschine!");
         } else {
-            sender.sendMessage("Du hast hier keine Macht!");
+            if (arg.length > 0){
+                plugin.getConfig().set("lieblingsessen", String.join(" ", arg));
+                plugin.saveConfig();
+                player.sendMessage("Das Lieblingsessen wurde in " + plugin.getConfig().get("lieblingsessen") + " geändert");
+            } else {
+                player.sendMessage("Lieblingsessen: " + plugin.getConfig().get("lieblingsessen"));
+            }
         }
     }
 
