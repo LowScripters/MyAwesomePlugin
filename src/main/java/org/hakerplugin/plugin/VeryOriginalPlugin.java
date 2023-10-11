@@ -4,6 +4,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.hakerplugin.plugin.Commands.Commands;
 import java.util.logging.Logger;
 import co.aikar.commands.BukkitCommandManager;
+import org.hakerplugin.plugin.Event.BowEvent;
 
 public final class VeryOriginalPlugin extends JavaPlugin {
 
@@ -12,7 +13,8 @@ public final class VeryOriginalPlugin extends JavaPlugin {
         Logger log = getLogger();
         log.info("Ihr Plugin läuft, willkommen!");
         BukkitCommandManager manager = new BukkitCommandManager(this);
-        manager.registerCommand(new Commands(this));
+        manager.registerCommand(new Commands());
+        getServer().getPluginManager().registerEvents(new BowEvent(), this);
     }
 
     @Override
